@@ -1,41 +1,180 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyg7ctgwr3bm"]
+[gd_scene load_steps=10 format=3 uid="uid://cyg7ctgwr3bm"]
 
 [ext_resource type="Texture2D" uid="uid://m57c00mrxr8g" path="res://icon.svg" id="1_y760h"]
 [ext_resource type="PackedScene" uid="uid://bnyfwlyb1lyp5" path="res://player.tscn" id="2_qmy0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y760h"]
-size = Vector2(35, 12)
+size = Vector2(36, 12)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y760h"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y760h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y760h"]
+normal = Vector2(0, 1)
+distance = 0.156174
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qmy0u"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qn1jo"]
+normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gn2rc"]
 
 [node name="Globabl" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("2_qmy0u")]
-position = Vector2(-30, -20)
+position = Vector2(0, -18)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 
+[node name="Box3" type="StaticBody2D" parent="."]
+position = Vector2(-97, -59)
+rotation = 0.551089
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Box3"]
+position = Vector2(8, 4)
+scale = Vector2(0.28125, 0.09375)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box3"]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_y760h")
+
+[node name="Box2" type="StaticBody2D" parent="."]
+position = Vector2(-8, -62)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Box2"]
+position = Vector2(8, 4)
+scale = Vector2(0.28125, 0.09375)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box2"]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_y760h")
+
 [node name="Box" type="StaticBody2D" parent="."]
 position = Vector2(44, -32)
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
-position = Vector2(7.5, 4)
-shape = SubResource("RectangleShape2D_y760h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Box"]
 position = Vector2(8, 4)
 scale = Vector2(0.28125, 0.09375)
 texture = ExtResource("1_y760h")
 
-[node name="World" type="StaticBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_y760h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World"]
-shape = SubResource("WorldBoundaryShape2D_gn2rc")
+[node name="LinkButton" type="LinkButton" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -163.0
+offset_right = 15.0
+offset_bottom = -140.0
+grow_horizontal = 2
+text = "Woe"
+underline = 1
+uri = "https://www.webtoons.com/en/canvas/woe-is-i/list?title_no=962575&page=1"
 
-[node name="Sprite2D" type="Sprite2D" parent="World"]
-position = Vector2(4.76837e-07, 0)
-scale = Vector2(2.69531, 0.0234375)
+[node name="WOE BALL" type="RigidBody2D" parent="."]
+position = Vector2(42, -54)
+physics_material_override = SubResource("PhysicsMaterial_y760h")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="WOE BALL"]
+scale = Vector2(0.140625, 0.140625)
 texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WOE BALL"]
+shape = SubResource("CircleShape2D_y760h")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="WOE BALL"]
+position = Vector2(-34, -20)
+physics_material_override = SubResource("PhysicsMaterial_y760h")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="WOE BALL/RigidBody2D"]
+scale = Vector2(0.140625, 0.140625)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WOE BALL/RigidBody2D"]
+shape = SubResource("CircleShape2D_y760h")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="WOE BALL/RigidBody2D"]
+position = Vector2(-34, -20)
+physics_material_override = SubResource("PhysicsMaterial_y760h")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="WOE BALL/RigidBody2D/RigidBody2D"]
+scale = Vector2(0.140625, 0.140625)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WOE BALL/RigidBody2D/RigidBody2D"]
+shape = SubResource("CircleShape2D_y760h")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="WOE BALL/RigidBody2D/RigidBody2D"]
+position = Vector2(-34, -20)
+physics_material_override = SubResource("PhysicsMaterial_y760h")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="WOE BALL/RigidBody2D/RigidBody2D/RigidBody2D"]
+scale = Vector2(0.140625, 0.140625)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WOE BALL/RigidBody2D/RigidBody2D/RigidBody2D"]
+shape = SubResource("CircleShape2D_y760h")
+
+[node name="WALLS N STUFF" type="Node" parent="."]
+
+[node name="Celiling" type="StaticBody2D" parent="WALLS N STUFF"]
+
+[node name="Sprite2D" type="Sprite2D" parent="WALLS N STUFF/Celiling"]
+position = Vector2(0.24992, 34.75)
+scale = Vector2(2.69141, 0.566406)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLS N STUFF/Celiling"]
+position = Vector2(0, -138)
+shape = SubResource("WorldBoundaryShape2D_y760h")
+
+[node name="Wall2" type="StaticBody2D" parent="WALLS N STUFF"]
+
+[node name="Sprite2D" type="Sprite2D" parent="WALLS N STUFF/Wall2"]
+position = Vector2(0.24992, 34.75)
+scale = Vector2(2.69141, 0.566406)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLS N STUFF/Wall2"]
+position = Vector2(171, -50)
+shape = SubResource("WorldBoundaryShape2D_qmy0u")
+
+[node name="Wall" type="StaticBody2D" parent="WALLS N STUFF"]
+
+[node name="Sprite2D" type="Sprite2D" parent="WALLS N STUFF/Wall"]
+position = Vector2(0.24992, 34.75)
+scale = Vector2(2.69141, 0.566406)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLS N STUFF/Wall"]
+position = Vector2(-173, -47)
+shape = SubResource("WorldBoundaryShape2D_qn1jo")
+
+[node name="Floor" type="StaticBody2D" parent="WALLS N STUFF"]
+
+[node name="Sprite2D" type="Sprite2D" parent="WALLS N STUFF/Floor"]
+position = Vector2(0.24992, 34.75)
+scale = Vector2(2.69141, 0.566406)
+texture = ExtResource("1_y760h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WALLS N STUFF/Floor"]
+shape = SubResource("WorldBoundaryShape2D_gn2rc")
