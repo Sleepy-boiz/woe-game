@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyg7ctgwr3bm"]
+
+[ext_resource type="Texture2D" uid="uid://m57c00mrxr8g" path="res://icon.svg" id="1_y760h"]
+[ext_resource type="PackedScene" uid="uid://bnyfwlyb1lyp5" path="res://player.tscn" id="2_qmy0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y760h"]
+size = Vector2(35, 12)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gn2rc"]
+
+[node name="Globabl" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("2_qmy0u")]
+position = Vector2(-30, -20)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(5, 5)
+position_smoothing_enabled = true
+
+[node name="Box" type="StaticBody2D" parent="."]
+position = Vector2(44, -32)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2(7.5, 4)
+shape = SubResource("RectangleShape2D_y760h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+position = Vector2(8, 4)
+scale = Vector2(0.28125, 0.09375)
+texture = ExtResource("1_y760h")
+
+[node name="World" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World"]
+shape = SubResource("WorldBoundaryShape2D_gn2rc")
+
+[node name="Sprite2D" type="Sprite2D" parent="World"]
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(2.69531, 0.0234375)
+texture = ExtResource("1_y760h")
